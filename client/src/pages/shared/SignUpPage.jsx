@@ -68,7 +68,7 @@ const SignUpPage = () => {
     try {
       const response = await axiosInstance.post("/user/signup", formData);
       setTimeout(() => {
-        navigate("/");
+        navigate("/home");
       }, 1000);
       if (response.data.success) {
         setMessage("Signup successful!");
