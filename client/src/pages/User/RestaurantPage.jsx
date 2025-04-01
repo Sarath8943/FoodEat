@@ -116,16 +116,16 @@ const RestaurantPage = () => {
               Order Online
             </button>
           </Link>
-          <button className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
+          {/* <button className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
             View Menu
-          </button>
-          <Link to={`/review/${id}`}>
+          </button> */}
+          {/* <Link to={`/review/${id}`}>
             <button className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
               Write a Review
             </button>
           </Link>
         </div>
-      </div>
+      </div> */}
 
       {/* Menu Section */}
       <div className="mb-8">
