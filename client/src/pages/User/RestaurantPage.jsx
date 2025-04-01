@@ -110,7 +110,7 @@ const RestaurantPage = () => {
         </div>
 
         {/* Action Buttons */}
-        {/* <div className="space-y-4">
+        <div className="space-y-4">
           <Link to={``} className="block">
             <button className="w-full bg-amber-500 hover:bg-amber-600 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
               Order Online
@@ -125,7 +125,7 @@ const RestaurantPage = () => {
             </button>
           </Link>
         </div>
-        </div>  */}
+      </div>
 
       {/* Menu Section */}
       <div className="mb-8">
