@@ -100,11 +100,7 @@ const Home = () => {
             value={selectedCuisine}
             onChange={(e) => setSelectedCuisine(e.target.value)}
           >
-            <option value="all">All Cuisines</option>
-            <option value="italian">Italian</option>
             <option value="indian">Indian</option>
-            <option value="mexican">Mexican</option>
-            <option value="chinese">Chinese</option>
           </select>
         </div>
 
