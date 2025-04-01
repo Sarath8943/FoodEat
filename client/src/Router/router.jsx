@@ -58,7 +58,7 @@ const router = createBrowserRouter([
             element: <RestaurantPage />,
           },
           {
-            path: "review/${id}",
+            path: "review/:id",
             element: <ReviewPage />,
           },
           {
