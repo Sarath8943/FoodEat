@@ -59,14 +59,9 @@ const AllRestaurantPage = () => {
               onChange={handleCuisineChange}
               className="appearance-none pl-10 pr-8 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white"
             >
-              <option value="all">All Cuisines</option>
-              <option value="Italian">Italian</option>
-              <option value="Japanese">Japanese</option>
+            
               <option value="Indian">Indian</option>
-              <option value="American">American</option>
-              <option value="Mexican">Mexican</option>
-              <option value="Mediterranean">Mediterranean</option>
-              <option value="Thai">Thai</option>
+      
             </select>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <svg

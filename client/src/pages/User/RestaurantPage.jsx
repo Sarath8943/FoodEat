@@ -4,6 +4,7 @@ import { axiosInstance } from "../../config/axiosInstance";
 import { ProductSkelton } from "../../components/shared/Skelton";
 import MenuCard from "../../components/user/MenuCard";
 import { FiClock, FiMapPin, FiPhone, FiStar } from "react-icons/fi";
+import ReviewPage from "../../pages/User/ReviewPage";
 
 const RestaurantPage = () => {
   const [restaurantDetails, setRestaurantDetails] = useState({});
@@ -118,9 +119,11 @@ const RestaurantPage = () => {
           <button className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
             View Menu
           </button>
-          <button className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
-            Write a Review
-          </button>
+          <Link to="/review/${id}">
+            <button className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
+              Write a Review
+            </button>
+          </Link>
         </div>
       </div>
 
