@@ -116,23 +116,23 @@ const RestaurantPage = () => {
               Order Online
             </button>
           </Link>
-          {/* <button className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
+          <button className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
             View Menu
-          </button> */}
-          {/* <Link to={`/review/${id}`}>
+          </button>
+          <Link to="/review/${id}">
             <button className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
               Write a Review
             </button>
           </Link>
         </div>
-      </div> */}
+      </div>
 
       {/* Menu Section */}
       <div className="mb-8">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800">Recommended Menu</h2>
           <div className="flex gap-2">
-            {/* <button className="px-4 py-2 text-sm font-medium bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+            <button className="px-4 py-2 text-sm font-medium bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
               All
             </button>
             <button className="px-4 py-2 text-sm font-medium bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
@@ -140,7 +140,7 @@ const RestaurantPage = () => {
             </button>
             <button className="px-4 py-2 text-sm font-medium bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
               Mains
-            </button> */}
+            </button>
           </div>
         </div>
 
