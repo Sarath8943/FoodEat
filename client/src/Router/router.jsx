@@ -15,11 +15,11 @@ import RestaurantPage from "../pages/User/RestaurantPage";
 import RatingPage from "../pages/User/Rating";
 import LoginPage from "../pages/shared/Login";
 import CheckoutPage from "../pages/User/CheckoutPage/CheckoutPage";
-import ReviewPage from "../pages/User/ReviewPage";
 import { ProtectedRoute } from "./ProtectedRoute";
 import ProfilePage from "../pages/User/Profile/Profile";
 import Invoice from "../pages/User/CheckoutPage/Invoice";
 import LandingPage from "../pages/shared/LandingPage";
+import CastamerReview from "../pages/User/castamerReview";
 
 const router = createBrowserRouter([
   {
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
           },
           {
             path: "review/:id",
-            element: <ReviewPage />,
+            element: <CastamerReview/>,
           },
           {
             path: "payment",
