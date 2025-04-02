@@ -4,7 +4,8 @@ import { axiosInstance } from "../../config/axiosInstance";
 import { ProductSkelton } from "../../components/shared/Skelton";
 import MenuCard from "../../components/user/MenuCard";
 import { FiClock, FiMapPin, FiPhone, FiStar } from "react-icons/fi";
-import ReviewPage from "../../pages/User/ReviewPage";
+vv
+
 
 const RestaurantPage = () => {
   const [restaurantDetails, setRestaurantDetails] = useState({});

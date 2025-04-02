@@ -19,6 +19,7 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import ProfilePage from "../pages/User/Profile/Profile";
 import Invoice from "../pages/User/CheckoutPage/Invoice";
 import LandingPage from "../pages/shared/LandingPage";
+import Reviewpage from "../pages/User/ReviewPage";
 import CastamerReview from "../pages/User/castamerReview";
 
 const router = createBrowserRouter([
