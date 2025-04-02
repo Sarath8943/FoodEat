@@ -60,7 +60,7 @@ const router = createBrowserRouter([
           },
           {
             path: "review/:id",
-            element: <CastamerReview/>,
+            element: <Reviewpage/>,
           },
           {
             path: "payment",
