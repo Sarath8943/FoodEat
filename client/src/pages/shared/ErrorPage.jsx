@@ -5,34 +5,28 @@ const ErrorPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-center p-4">
-      <div className="max-w-md">
-        <img
-          className="w-full max-w-xs mx-auto mb-6"
-          src="https://th.bing.com/th/id/OIP.yYBFzWZ0R970KK2bJhwO9AHaEi?rs=1&pid=ImgDetMain"
-          alt="Error illustration"
-        />
-        <h1 className="text-4xl font-bold text-red-500 mb-4">
-          Oops! Page Not Found
-        </h1>
-        <p className="text-lg text-gray-700 mb-6">
-          We couldn't find the page you're looking for. It might have been moved
-          or deleted.
+    <div className="flex items-center justify-center min-h-screen bg-white px-4">
+      <div className="bg-white border border-gray-200 shadow-xl rounded-3xl max-w-xl w-full px-10 py-14 text-center relative overflow-hidden">
+        
+        {/* Optional Soft Background Shape */}
+        <div className="absolute -top-16 -right-16 w-64 h-64 bg-gradient-to-tr from-pink-100 via-purple-100 to-blue-100 rounded-full blur-3xl opacity-30 z-[-1]"></div>
+
+        {/* Animated Emoji */}
+        <div className="text-[4rem] mb-4 animate-bounce">🚫</div>
+
+        <h1 className="text-6xl font-extrabold text-gray-800 mb-2">404</h1>
+        <h2 className="text-2xl font-semibold text-gray-700 mb-4">Page Not Found</h2>
+        <p className="text-gray-500 mb-10">
+          The page you're looking for doesn't exist or has been moved.
         </p>
-        <div>
-          <button
-            className="px-6 py-2 text-white bg-teal-800 rounded hover:bg-teal-700 mr-3"
-            onClick={() => navigate("/")}
-          >
-            Go to Homepage
-          </button>
-          <button
-            className="px-6 py-2 text-teal-800 border border-teal-800 rounded"
-            onClick={() => navigate(-1)}
-          >
-            Go Back
-          </button>
-        </div>
+
+        <button
+          onClick={() => navigate("/")}
+          className="relative inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold text-lg rounded-full shadow-lg hover:from-pink-500 hover:to-orange-500 transition-all duration-300 ease-in-out transform hover:scale-105"
+        >
+          <span className="mr-2">🏠</span>
+          Back to Homepage
+        </button>
       </div>
     </div>
   );

@@ -7,25 +7,30 @@ const { calculateAverageRating } = require('../utils/ratingUtils');
 
 exports.addReview = async (req, res) => {
   try {
-    const {username, restaurantId, orderId, rating, comment } = req.body;
-    const userId = req.user.id;
+   
+    
+    const { userId,username, restaurantId, orderId, rating, comment } = req.body;
+  
 
     // Check if userId exists
     if (!userId) {
       return res.status(400).json({ message: "User ID is required" });
     }
+    if (!username) {
+      return res.status(400).json({ message: "Username is required" });
+    }
 
     // Find the order
-    const order = await Order.findById(orderId).populate("cartId");
+    const order = await Order.findById(orderId);
 
     let isMatch = false;
     // Check if the order contains a menu item from the restaurant
-    order.cartId.items.some((item) => {
-      if (item.foodId.restaurant.toString() === restaurantId.toString()) {
-        isMatch = true;
-      }
-      return isMatch;
-    });
+    // order.cartId.items.some((item) => {
+    //   if (item.foodId.restaurant.toString() === restaurantId.toString()) {
+    //     isMatch = true;
+    //   }
+    //   return isMatch;
+    // });
 
     // If order status is not 'delivered', reject the review
     if (order.status !== "delivered") {
@@ -37,10 +42,10 @@ exports.addReview = async (req, res) => {
 
     // Check if the user has already reviewed this restaurant for the given order
     const existingReview = await Review.findOne({
-      user: userId,
+      userId: userId,
       restaurantId: restaurantId,
       orderId: orderId,
-      username
+      username:username
     });
 
     if (existingReview) {
@@ -51,19 +56,20 @@ exports.addReview = async (req, res) => {
     }
 
     // If no item is found from this restaurant, reject
-    if (!isMatch) {
-      return res.status(400).json({
-        message: "No items from this restaurant in your order",
-      });
-    }
+    // if (!isMatch) {
+    //   return res.status(400).json({
+    //     message: "No items from this restaurant in your order",
+    //   });
+    // }
 
     // Create the new review
     const newReview = new Review({
-      user: userId,
+      userId: userId,
       restaurantId: restaurantId, // Changed to restaurantId
       rating,
       comment,
-      name:username,
+      username:username,
+      orderId: orderId,
     });
 
     // Save the review
@@ -77,7 +83,8 @@ exports.addReview = async (req, res) => {
 
     res.status(201).json({ message: "Review submitted successfully", savedReview });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ messagegger: error.message });
+    
   }
 };
 
@@ -185,12 +192,18 @@ exports.addReview = async (req, res) => {
   
   // Get all reviews
 exports.getAllReviews = async (req, res) => {
+  const restaurantId = req.params.restaurantId
     try {
-      const reviews = await Review.find()
-        .populate("user", "email") 
-        .populate("menuItems", "name");
+    
+       const reviews = await Review.find({ restaurantId })
+
+      
+      
+        .populate("userId","comment") 
+        .populate( "username","rating");
   
       res.status(200).json(reviews);
+      console.log("redhdh",reviews);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }

@@ -4,8 +4,7 @@ import { axiosInstance } from "../../config/axiosInstance";
 import { ProductSkelton } from "../../components/shared/Skelton";
 import MenuCard from "../../components/user/MenuCard";
 import { FiClock, FiMapPin, FiPhone, FiStar } from "react-icons/fi";
-vv
-
+import { useNavigate } from "react-router-dom";
 
 const RestaurantPage = () => {
   const [restaurantDetails, setRestaurantDetails] = useState({});
@@ -27,6 +26,7 @@ const RestaurantPage = () => {
       console.log(error);
     }
   };
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchRestaurantDetails();
@@ -39,6 +39,10 @@ const RestaurantPage = () => {
       </div>
     );
   }
+  
+  const handleReview = (id) => {
+    navigate(`/review/${id}`);
+  };
 
   return (
     <div className="mt-20 container mx-auto px-4 sm:px-6 lg:px-8 pb-12">
@@ -76,7 +80,7 @@ const RestaurantPage = () => {
               </span>
               <div className="flex items-center text-amber-500">
                 <FiStar className="fill-current mr-1" />
-                <span className="font-medium">4.5 (120 reviews)</span>
+                <span className="font-medium">4.2 (reviews)</span>
               </div>
             </div>
 
@@ -96,14 +100,14 @@ const RestaurantPage = () => {
                 <FiClock className="text-gray-500 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="text-gray-500 text-sm">Opening Hours</h3>
-                  <p className="text-gray-800">10:00 AM - 10:00 PM</p>
+                  <p className="text-gray-800">10:00 AM - close time 11:00 PM</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <FiPhone className="text-gray-500 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="text-gray-500 text-sm">Contact</h3>
-                  <p className="text-gray-800">+91 9876543210</p>
+                  <p className="text-gray-800">+91 6547382973</p>
                 </div>
               </div>
             </div>
@@ -117,14 +121,18 @@ const RestaurantPage = () => {
               Order Online
             </button>
           </Link>
-          <button className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
-            View Menu
-          </button>
-          <Link to={`review/${id}`}>
+
+         {/* <Link to={`review/${id}`}>
             <button className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
               Write a Review
             </button>
-          </Link>
+          </Link>*/}
+          <button 
+          onClick={() => handleReview(id)}
+          className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
+              Write a Review
+            </button>
+            
         </div>
       </div>
 

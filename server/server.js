@@ -25,7 +25,7 @@ app.use(cookieParser());
 // CORS configuration
 app.use(
   cors({
-    origin: [process.env.CLIENT_URL, process.env.ADMIN_URL], // Allow requests from these origins
+    origin: ["http://localhost:5173"], // Allow requests from these origins
     credentials: true, // Allow cookies and credentials
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Allow these HTTP methods
     allowedHeaders: [

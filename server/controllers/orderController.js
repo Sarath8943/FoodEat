@@ -68,6 +68,27 @@ exports.getAllOrders = async (req,res)=>{
         res.status(500).json({message: error.message})
     }
   }
+
+
+
+  exports.getMyOrders = async (req,res)=>{
+    try{
+        const user = req.params.userId
+        const orders = await Order.find({user})
+       
+
+        if(!orders){
+            return res.status(404).json({message: "No orders found for this profile"})
+        }
+        res.status(200).json({message: "Orders found successfully", orders})
+    }catch(error){
+        res.status(500).json({message: error.message})
+    }
+  }
+  
+
+
+
   
   exports.getOrderById = async (req, res) => {
     try {

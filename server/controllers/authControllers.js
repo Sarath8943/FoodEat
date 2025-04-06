@@ -48,6 +48,7 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    
 
     if (!email || !password) {
       return res.status(400).json({ message: "all fields required" });
@@ -69,7 +70,7 @@ exports.login = async (req, res) => {
       path: "/", // Available for all routes
     });
 
-    res.json({ message: " Login succssfully" });
+    res.json({ message: " Login succssfully",userId:userExist._id,username:userExist.name });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

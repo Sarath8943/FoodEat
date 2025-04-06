@@ -6,6 +6,8 @@ import RestaurantCard from "../../components/user/RestaurantCard";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/UseFetch";
 
+
+
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCuisine, setSelectedCuisine] = useState("all");
@@ -13,6 +15,9 @@ const Home = () => {
     cuisine: selectedCuisine !== "all" ? selectedCuisine : undefined,
   });
   const navigate = useNavigate();
+  
+  
+  
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -55,8 +60,8 @@ const Home = () => {
                       <div
                         key={item._id}
                         className="p-2 hover:bg-gray-100 rounded-md cursor-pointer transition-colors"
-                        onClick={() => handleRestaurantClick(item._id)}
-                      >
+                       
+                      > onClick={() => handleRestaurantClick(item._id)}
                         <p className="text-gray-700 font-medium">{item.name}</p>
                         <p className="text-sm text-gray-500">{item.cuisine}</p>
                       </div>

@@ -143,11 +143,11 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h3 className="text-lg font-medium text-white mb-4">
+              {/* <h3 className="text-lg font-medium text-white mb-4">
                 Download App
-              </h3>
+              </h3> */}
               <div className="space-y-4">
-                <a href="#" className="block">
+                {/* <a href="#" className="block">
                   <img
                     src="https://via.placeholder.com/150x50?text=App+Store"
                     alt="Download on App Store"
@@ -160,7 +160,7 @@ const Footer = () => {
                     alt="Get it on Google Play"
                     className="h-10 w-auto"
                   />
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

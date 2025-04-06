@@ -5,7 +5,6 @@ import About from "../pages/User/About";
 import Cart from "../pages/User/Cart";
 import Contact from "../pages/User/Contact";
 import OrderDetails from "../../src/pages/User/OrderDetails";
-import SearchPage from "../pages/User/SearchPage";
 import SignUpPage from "../pages/shared/SignUpPage";
 import Payment from "../pages/User/Payment";
 import UserLayout from "../layout/UserLayout";
@@ -19,8 +18,8 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import ProfilePage from "../pages/User/Profile/Profile";
 import Invoice from "../pages/User/CheckoutPage/Invoice";
 import LandingPage from "../pages/shared/LandingPage";
-import Reviewpage from "../pages/User/ReviewPage";
-import CastamerReview from "../pages/User/castamerReview";
+import ReviewPage from "../pages/User/ReviewPage";
+import CastamerReview from "../pages/User/CastamerReview";
 
 const router = createBrowserRouter([
   {
@@ -60,7 +59,7 @@ const router = createBrowserRouter([
           },
           {
             path: "review/:id",
-            element: <CastamerReview/>,
+            element: <CastamerReview/>
           },
           {
             path: "payment",
@@ -90,6 +89,11 @@ const router = createBrowserRouter([
             path: "invoice/:orderId",
             element: <Invoice />,
           },
+          {
+            path: "sa",
+            element: <ReviewPage />,
+          },
+         
         ],
       },
     ],

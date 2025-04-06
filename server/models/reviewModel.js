@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 
 const reviewSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 
-  username: { type: String, required: true },
+  
  
   restaurantId: { 
     type: mongoose.Schema.Types.ObjectId, 
@@ -25,6 +25,10 @@ const reviewSchema = new mongoose.Schema({
     type: Date, 
     default: Date.now 
   },
+  username: { 
+    type: String, 
+    required: true
+   },
 });
 
 const Review = mongoose.model("Review", reviewSchema);

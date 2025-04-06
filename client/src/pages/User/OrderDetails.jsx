@@ -12,6 +12,8 @@ import {
 const OrderDetails = () => {
   const [orderData, loading, errors] = useFetch("/order/get-all-order");
   const orders = orderData?.orders;
+  console.log("gdggg",orders);
+  const orderId = localStorage.setItem("orderId", orders?.id);
 
   // State for pagination
   const [currentPage, setCurrentPage] = useState(1);

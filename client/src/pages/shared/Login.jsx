@@ -25,6 +25,8 @@ const Login = () => {
           color: "#fff",
         },
       });
+      localStorage.setItem("userId",response.data.userId);
+      localStorage.setItem("username",response.data.username);
       window.location.href = "/home"; // Redirect to home page
     } catch (error) {
       toast.error("Login failed. Please try again.", {
@@ -35,6 +37,8 @@ const Login = () => {
       });
     }
   };
+ 
+
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
