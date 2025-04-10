@@ -6,12 +6,14 @@ const ReviewPage = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { id } = useParams();
+  const { id: restaurantId } = useParams();
+  console.log("restaurantId", restaurantId);
+  console.log("reviews", reviews);
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axiosInstance.get(`/review/get-all-reviews/${id}`);
+        const response = await axiosInstance.get(`/review/get-all-reviews/${restaurantId}`);
         setReviews(response.data);
       } catch (err) {
         setError(err.message);
@@ -21,7 +23,7 @@ const ReviewPage = () => {
     };
 
     fetchReviews();
-  }, [id]);
+  }, [restaurantId]);
 
   if (loading) return <p className="text-center text-gray-500 mt-10">Loading reviews...</p>;
   if (error) return <p className="text-center text-red-500 mt-10">Error: {error}</p>;
@@ -36,7 +38,7 @@ const ReviewPage = () => {
             <div key={review._id} className="bg-white p-5 rounded-xl shadow-md">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-gray-800">
-                  {review.user?.email || "Unknown User"}
+                  {review.username || "Unknown User"}
                 </h2>
                 <span className="text-yellow-500 text-sm font-bold">
                   {"★".repeat(review.rating || 0)}{"☆".repeat(5 - (review.rating || 0))}

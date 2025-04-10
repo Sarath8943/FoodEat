@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const MenuItem = require("../models/menuItemModel");
 const cloudinaryInstance = require("../config/cloudinary");
 const Restaurant = require("../models/restaurantModel");

@@ -90,7 +90,7 @@ const router = createBrowserRouter([
             element: <Invoice />,
           },
           {
-            path: "sa",
+            path: "/reviews/:id",
             element: <ReviewPage />,
           },
          

@@ -60,7 +60,7 @@ const AllRestaurantPage = () => {
               className="appearance-none pl-10 pr-8 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-white"
             >
             
-              <option value="Indian">Indian</option>
+              {/* <option value="Indian">Indian</option> */}
       
             </select>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">

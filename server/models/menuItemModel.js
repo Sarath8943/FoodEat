@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const menuItemSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    description: { type: String },
+    description: { type: String,required: true },
     price: { type: Number, required: true },
     category: { type: String, required: true },
     image: { type: String, default:"https://cdn-icons-png.flaticon.com/512/2439/2439116.png" },

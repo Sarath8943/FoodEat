@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
         default:
           "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg",
       },
-    role: { type: String, enum: ['user', 'admin', ' manager'], default: 'user' },
+    role: { type: String, enum: ['user', 'admin', 'Restaurant manager'], default: 'user' },
     address: [{
         street: String,
         city: String,
