@@ -250,33 +250,70 @@ exports.getAllReviews = async (req, res) => {
     }
   };
   
+
+// UPDATE a review comment
+exports.updateReview = async (req, res) => {
+  try {
+    const { reviewId } = req.params;
+    const { comment } = req.body;
+
+    const updatedReview = await Review.findByIdAndUpdate(
+      reviewId,
+      { comment },
+      { new: true }
+    );
+
+    if (!updatedReview) {
+      return res.status(404).json({ message: 'Review not found' });
+    }
+
+    res.status(200).json(updatedReview);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to update review', error });
+  }
+};
+
+
+
   
   // Delete a review
-exports.deleteReview = async (req, res) => {
-  try {
+  exports.deleteReview = async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const reviewId = req.params.reviewId;
+
   
-    const userId = req.user.id;
-    const reviewId = req.params.reviewId;
-    const review = await Review.findById(reviewId);
-
-    if (!review) {
-        return res.status(404).json({ message: "Review not found " });
+      // Find the review by ID
+      const review = await Review.findById(reviewId);
+  
+      if (!review) {
+        return res.status(404).json({ message: "Review not found" });
+      }
+  
+      // Check if the logged-in user is the owner of the review
+      if (review.userId.toString() !== userId) {
+        return res.status(403).json({ message: "Unauthorized to delete this review" });
+      }
+  
+      // Optionally: remove the review ID from the restaurant's review list if such a field exists
+      // Assuming `customerReviews` is an array in Restaurant schema
+      await Restaurant.findByIdAndUpdate(
+        review.restaurantId,
+        { $pull: { customerReviews: review._id } }
+      );
+  
+      // Delete the review
+      await Review.findByIdAndDelete(reviewId);
+  
+      // Optionally: recalculate and update average rating
+      const averageRating = await calculateAverageRating(Restaurant, review.restaurantId);
+      await Restaurant.findByIdAndUpdate(review.restaurantId, { rating: averageRating });
+  
+      res.status(200).json({ message: "Review deleted successfully" });
+  
+    } catch (error) {
+      console.error("Error deleting review:", error);
+      res.status(500).json({ message: error.message });
     }
-    
-    const menuItem = await MenuItems.findById(review.menuItems);
-
-    const itemIndex = menuItem.customerReviews.findIndex((item) => item.toString() === review._id.toString());
-     
-    if(itemIndex > -1){
-      menuItem.customerReviews.splice(itemIndex,1);
-    }
-    await menuItem.save();
-    
-    await Review.findByIdAndDelete(reviewId);
-    
-
-    res.status(200).json({ message: "Review deleted successfully" });
-} catch (error) {
-    res.status(500).json({ message:error.message });
-}
   };
+  

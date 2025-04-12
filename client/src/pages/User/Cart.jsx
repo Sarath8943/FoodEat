@@ -138,61 +138,60 @@ const Cart = () => {
           </div>
         ) : (
           <div className="space-y-6">
-            {cartItems.items.map((item) => (
-              <div
-                key={item.foodId._id}
-                className="flex flex-col sm:flex-row items-center justify-between p-4 bg-gray-50 rounded-lg transition-all duration-300 hover:bg-gray-100"
-              >
-                <div className="flex items-center space-x-4 mb-4 sm:mb-0">
-                  <img
-                    src={item.foodId.image}
-                    alt={item.foodId.name}
-                    className="w-20 h-20 object-cover rounded-lg"
-                  />
-                  <div>
-                    <h2 className="text-lg font-semibold text-gray-800">
-                      {item.foodId.name}
-                    </h2>
-                    <p className="text-gray-600">₹{item.foodId.price}</p>
-                  </div>
-                </div>
+          {cartItems.items
+  .filter((item) => item.foodId) // Only include items with valid foodId
+  .map((item) => (
+    <div
+      key={item.foodId._id}
+      className="flex flex-col sm:flex-row items-center justify-between p-4 bg-gray-50 rounded-lg transition-all duration-300 hover:bg-gray-100"
+    >
+      <div className="flex items-center space-x-4 mb-4 sm:mb-0">
+        <img
+          src={item.foodId.image}
+          alt={item.foodId.name}
+          className="w-20 h-20 object-cover rounded-lg"
+        />
+        <div>
+          <h2 className="text-lg font-semibold text-gray-800">
+            {item.foodId.name}
+          </h2>
+          <p className="text-gray-600">₹{item.foodId.price}</p>
+        </div>
+      </div>
 
-                <div className="flex items-center space-x-6">
-                  <div className="flex items-center space-x-3 bg-white px-3 py-1 rounded-full border border-gray-200">
-                    <button
-                      onClick={() =>
-                        updateQuantity(item.foodId._id, "decrement")
-                      }
-                      className="text-gray-500 hover:text-amber-600 p-1 transition-colors"
-                    >
-                      <FiMinus className="h-4 w-4" />
-                    </button>
-                    <span className="text-gray-800 font-medium w-6 text-center">
-                      {item.quantity}
-                    </span>
-                    <button
-                      onClick={() =>
-                        updateQuantity(item.foodId._id, "increment")
-                      }
-                      className="text-gray-500 hover:text-amber-600 p-1 transition-colors"
-                    >
-                      <FiPlus className="h-4 w-4" />
-                    </button>
-                  </div>
+      <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-3 bg-white px-3 py-1 rounded-full border border-gray-200">
+          <button
+            onClick={() => updateQuantity(item.foodId._id, "decrement")}
+            className="text-gray-500 hover:text-amber-600 p-1 transition-colors"
+          >
+            <FiMinus className="h-4 w-4" />
+          </button>
+          <span className="text-gray-800 font-medium w-6 text-center">
+            {item.quantity}
+          </span>
+          <button
+            onClick={() => updateQuantity(item.foodId._id, "increment")}
+            className="text-gray-500 hover:text-amber-600 p-1 transition-colors"
+          >
+            <FiPlus className="h-4 w-4" />
+          </button>
+        </div>
 
-                  <p className="text-lg font-semibold text-gray-800 w-20 text-right">
-                    ₹{item.totalItemPrice}
-                  </p>
+        <p className="text-lg font-semibold text-gray-800 w-20 text-right">
+          ₹{item.totalItemPrice}
+        </p>
 
-                  <button
-                    onClick={() => removeItem(item.foodId._id)}
-                    className="text-gray-400 hover:text-red-500 p-2 transition-colors"
-                  >
-                    <IoTrashBin className="h-5 w-5" />
-                  </button>
-                </div>
-              </div>
-            ))}
+        <button
+          onClick={() => removeItem(item.foodId._id)}
+          className="text-gray-400 hover:text-red-500 p-2 transition-colors"
+        >
+          <IoTrashBin className="h-5 w-5" />
+        </button>
+      </div>
+    </div>
+))}
+
 
             <div className="border-t border-gray-200 pt-6 mt-8">
               <div className="flex justify-between items-center mb-6">

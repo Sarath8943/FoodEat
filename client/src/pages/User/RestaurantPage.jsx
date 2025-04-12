@@ -80,7 +80,14 @@ const RestaurantPage = () => {
               </span>
               <div className="flex items-center text-amber-500">
                 <FiStar className="fill-current mr-1" />
-                <span className="font-medium">4.2 (reviews)</span>
+                <FiStar className="fill-current mr-1" />
+  <Link
+    to={`/reviews/${id}`} // Replace with dynamic path if needed
+    className="font-medium hover:underline"
+  >
+    4.2 (reviews)
+  </Link>
+
               </div>
             </div>
 
@@ -100,7 +107,7 @@ const RestaurantPage = () => {
                 <FiClock className="text-gray-500 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="text-gray-500 text-sm">Opening Hours</h3>
-                  <p className="text-gray-800">10:00 AM - close time 11:00 PM</p>
+                  <p className="text-gray-800">10:00 AM - 11:00 PM</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -116,7 +123,7 @@ const RestaurantPage = () => {
 
         {/* Action Buttons */}
         <div className="space-y-4">
-          <Link to={``} className="block">
+          <Link to={`/home`} className="block">
             <button className="w-full bg-amber-500 hover:bg-amber-600 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
               Order Online
             </button>
