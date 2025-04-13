@@ -168,7 +168,7 @@ exports.logout = (req, res) => {
 };
 
 //Update-profile
-exports.profileUpdate = async (req, res) => {
+exports. profileUpdate = async (req, res) => {
   try {
     const { name, email, phone, profilePic } = req.body;
 
