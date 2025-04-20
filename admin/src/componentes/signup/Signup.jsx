@@ -192,8 +192,8 @@ const Signup = () => {
           </div>
 
           <div className="space-y-1">
-            {/* <label className="block text-gray-700 text-sm font-medium mb-1">Role</label>
-            <select
+            <label className="block text-gray-700 text-sm font-medium mb-1">Role</label>
+            {/* <select
               name="role"
               value={formData.role}
               onChange={handleChange}
