@@ -1,7 +1,15 @@
-
 import React, { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { TextField, Button, MenuItem, FormControl, Typography, Grid, Box, Paper } from "@mui/material";
+import {
+  TextField,
+  Button,
+  MenuItem,
+  FormControl,
+  Typography,
+  Grid,
+  Box,
+  Paper,
+} from "@mui/material";
 import { axiosInstance } from "../../config/axiosInstance";
 import { Trash2, ArrowLeft } from "lucide-react";
 
@@ -16,7 +24,8 @@ const EditRestaurant = () => {
     name: data?.name || "",
     cuisine: data?.cuisine || "",
     status: data?.status || "open",
-    image: data?.image || "",
+    location: data?.location || "",
+    image: null,
     contact: {
       phone: data?.contact?.phone || "",
       email: data?.contact?.email || "",
@@ -27,7 +36,8 @@ const EditRestaurant = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name.includes("contact.")) {
+
+    if (name.startsWith("contact.")) {
       const key = name.split(".")[1];
       setFormData((prev) => ({
         ...prev,
@@ -46,8 +56,8 @@ const EditRestaurant = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    setFormData((prev) => ({ ...prev, image: file }));
     if (file) {
+      setFormData((prev) => ({ ...prev, image: file }));
       const reader = new FileReader();
       reader.onload = (upload) => {
         setImagePreview(upload.target.result);
@@ -56,24 +66,44 @@ const EditRestaurant = () => {
     }
   };
 
+  const isValidPhone = (phone) => /^\d{10}$/.test(phone);
+  const isValidEmail = (email) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
+    if (!isValidPhone(formData.contact.phone)) {
+      alert("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
+    if (!isValidEmail(formData.contact.email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    if (!formData.location.trim()) {
+      alert("Please enter the location.");
+      return;
+    }
+
     try {
       const form = new FormData();
       form.append("name", formData.name);
       form.append("cuisine", formData.cuisine);
       form.append("status", formData.status);
+      form.append("location", formData.location);
       form.append("contact[phone]", formData.contact.phone);
       form.append("contact[email]", formData.contact.email);
-  
+
       if (formData.image) {
         form.append("image", formData.image);
       }
-  
+
       const endpoint = isEdit ? `/restaurant/${data._id}` : `/restaurant`;
       const method = isEdit ? "PATCH" : "POST";
-  
+
       await axiosInstance({
         method,
         url: endpoint,
@@ -82,7 +112,7 @@ const EditRestaurant = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-  
+
       navigate("/allrestaurants");
     } catch (error) {
       console.error("Error saving restaurant:", error);
@@ -102,142 +132,150 @@ const EditRestaurant = () => {
       <Grid container justifyContent="center">
         <Grid item xs={12} md={8} lg={6}>
           <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
-            <Typography variant="h5" component="h1" gutterBottom sx={{ fontWeight: 600, mb: 3 }}>
+            <Typography variant="h5" gutterBottom fontWeight={600} mb={3}>
               {isEdit ? "Edit Restaurant" : "Create New Restaurant"}
             </Typography>
 
             <form onSubmit={handleSubmit}>
               <Grid container spacing={3}>
                 <Grid item xs={12} md={6}>
-                  <FormControl fullWidth margin="normal">
-                    <TextField
-                      label="Restaurant Name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      size="small"
-                      variant="outlined"
-                    />
-                  </FormControl>
+                  <TextField
+                    fullWidth
+                    label="Restaurant Name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    size="small"
+                  />
                 </Grid>
 
                 <Grid item xs={12} md={6}>
-                  <FormControl fullWidth margin="normal">
-                    <TextField
-                      label="Cuisine Type"
-                      name="cuisine"
-                      value={formData.cuisine}
-                      onChange={handleChange}
-                      required
-                      size="small"
-                      variant="outlined"
+                  <TextField
+                    fullWidth
+                    label="Cuisine Type"
+                    name="cuisine"
+                    value={formData.cuisine}
+                    onChange={handleChange}
+                    required
+                    size="small"
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    select
+                    label="Status"
+                    name="status"
+                    value={formData.status}
+                    onChange={handleChange}
+                    size="small"
+                  >
+                    <MenuItem value="open">Open</MenuItem>
+                    <MenuItem value="closed">Closed</MenuItem>
+                  </TextField>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Location"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleChange}
+                    required
+                    size="small"
+                  />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <Button
+                    variant="outlined"
+                    component="label"
+                    fullWidth
+                    sx={{ py: 1.5 }}
+                  >
+                    Upload Restaurant Image
+                    <input
+                      type="file"
+                      accept="image/*"
+                      hidden
+                      onChange={handleImageChange}
                     />
-                  </FormControl>
-                </Grid>
-
-                <Grid item xs={12}>
-                  <FormControl fullWidth margin="normal">
-                    <TextField
-                      select
-                      label="Status"
-                      name="status"
-                      value={formData.status}
-                      onChange={handleChange}
-                      size="small"
-                      variant="outlined"
-                    >
-                      <MenuItem value="open">Open</MenuItem>
-                      <MenuItem value="closed">Closed</MenuItem>
-                    </TextField>
-                  </FormControl>
-                </Grid>
-
-                <Grid item xs={12}>
-                  <FormControl fullWidth margin="normal">
-                    <Button
-                      variant="outlined"
-                      component="label"
-                      fullWidth
-                      sx={{ py: 1.5 }}
-                    >
-                      Upload Restaurant Image
-                      <input
-                        type="file"
-                        accept="image/*"
-                        hidden
-                        onChange={handleImageChange}
+                  </Button>
+                  {imagePreview && (
+                    <Box mt={2} textAlign="center" position="relative">
+                      <img
+                        src={imagePreview}
+                        alt="Preview"
+                        style={{
+                          maxWidth: "100%",
+                          maxHeight: "300px",
+                          borderRadius: "8px",
+                          border: "1px solid #e0e0e0",
+                        }}
                       />
-                    </Button>
-                    {imagePreview && (
-                      <Box mt={2} textAlign="center" position="relative">
-                        <img
-                          src={imagePreview}
-                          alt="Preview"
-                          style={{
-                            maxWidth: "100%",
-                            maxHeight: "300px",
-                            borderRadius: "8px",
-                            border: "1px solid #e0e0e0",
-                          }}
-                        />
-                        <Box
-                          sx={{
-                            position: "absolute",
-                            top: 8,
-                            right: 8,
-                            bgcolor: "white",
-                            borderRadius: "50%",
-                            p: 0.5,
-                            cursor: "pointer",
-                            boxShadow: 1,
-                          }}
-                          onClick={() => {
-                            setImagePreview("");
-                            setFormData((prev) => ({ ...prev, image: "" }));
-                          }}
-                        >
-                          <Trash2 size={18} color="#f44336" />
-                        </Box>
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          top: 8,
+                          right: 8,
+                          bgcolor: "white",
+                          borderRadius: "50%",
+                          p: 0.5,
+                          cursor: "pointer",
+                          boxShadow: 1,
+                        }}
+                        onClick={() => {
+                          setImagePreview("");
+                          setFormData((prev) => ({ ...prev, image: null }));
+                        }}
+                      >
+                        <Trash2 size={18} color="#f44336" />
                       </Box>
-                    )}
-                  </FormControl>
+                    </Box>
+                  )}
                 </Grid>
 
                 <Grid item xs={12} md={6}>
-                  <FormControl fullWidth margin="normal">
-                    <TextField
-                      label="Phone Number"
-                      name="contact.phone"
-                      value={formData.contact.phone}
-                      onChange={handleChange}
-                      required
-                      size="small"
-                      variant="outlined"
-                    />
-                  </FormControl>
+                  <TextField
+                    fullWidth
+                    label="Phone Number"
+                    name="contact.phone"
+                    value={formData.contact.phone}
+                    onChange={(e) => {
+                      const input = e.target.value.replace(/\D/g, "");
+                      setFormData((prev) => ({
+                        ...prev,
+                        contact: { ...prev.contact, phone: input.slice(0, 10) },
+                      }));
+                    }}
+                    required
+                    size="small"
+                    helperText="10-digit phone number"
+                  />
                 </Grid>
 
                 <Grid item xs={12} md={6}>
-                  <FormControl fullWidth margin="normal">
-                    <TextField
-                      label="Email Address"
-                      name="contact.email"
-                      value={formData.contact.email}
-                      onChange={handleChange}
-                      required
-                      size="small"
-                      variant="outlined"
-                      type="email"
-                    />
-                  </FormControl>
+                  <TextField
+                    fullWidth
+                    label="Email Address"
+                    name="contact.email"
+                    value={formData.contact.email}
+                    onChange={handleChange}
+                    required
+                    size="small"
+                    type="email"
+                    helperText="Enter a valid email"
+                  />
                 </Grid>
 
                 <Grid item xs={12}>
-                  <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
+                  <Box display="flex" justifyContent="flex-end" mt={2}>
                     <Button
-                      variant="contained"
                       type="submit"
+                      variant="contained"
                       size="large"
                       sx={{
                         px: 4,
