@@ -4,7 +4,6 @@ import {
   TextField,
   Button,
   MenuItem,
-  FormControl,
   Typography,
   Grid,
   Box,
@@ -132,7 +131,7 @@ const EditRestaurant = () => {
       <Grid container justifyContent="center">
         <Grid item xs={12} md={8} lg={6}>
           <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
-            <Typography variant="h5" gutterBottom fontWeight={600} mb={3}>
+            <Typography variant="h5" fontWeight={600} mb={3}>
               {isEdit ? "Edit Restaurant" : "Create New Restaurant"}
             </Typography>
 
@@ -248,7 +247,10 @@ const EditRestaurant = () => {
                       const input = e.target.value.replace(/\D/g, "");
                       setFormData((prev) => ({
                         ...prev,
-                        contact: { ...prev.contact, phone: input.slice(0, 10) },
+                        contact: {
+                          ...prev.contact,
+                          phone: input.slice(0, 10),
+                        },
                       }));
                     }}
                     required

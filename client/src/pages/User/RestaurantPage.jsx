@@ -105,7 +105,12 @@ const RestaurantPage = () => {
                 <FiPhone className="text-gray-500 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="text-gray-500 text-sm">Contact</h3>
-                  <p className="text-gray-800">+91 6547382973</p>
+                  <p className="text-gray-800">
+                    {restaurantDetails.contact?.phone}
+                  </p>
+                  <p className="text-gray-800">
+                    {restaurantDetails.contact?.email}
+                  </p>
                 </div>
               </div>
             </div>
