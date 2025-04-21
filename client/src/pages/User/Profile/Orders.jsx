@@ -79,7 +79,7 @@ function Orders({ lastThreeOrders }) {
 
                 <div className="mt-3 flex justify-end">
                   <Link
-                    to={`invoice/:orderId/${order._id}`}
+                    to={`invoice/${order._id}`}
                     className="text-sm font-medium text-amber-600 hover:text-amber-700"
                   >
                     View Details
