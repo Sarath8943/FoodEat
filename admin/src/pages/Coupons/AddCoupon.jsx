@@ -59,7 +59,7 @@ const AddCoupon = () => {
           <h2 className="text-3xl font-bold text-gray-800 mb-2">
             {isEdit ? "Edit Coupon" : "Create Coupon"}
           </h2>
-          <p className="text-white-600">
+          <p className="text-gray-600">
             {isEdit ? "Update your coupon details" : "Add a new discount coupon for your customers"}
           </p>
         </div>

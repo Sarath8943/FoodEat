@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../config/axiosInstance";
 import { ProductSkelton } from "../../components/shared/Skelton";
 import MenuCard from "../../components/user/MenuCard";
-import { FiClock, FiMapPin, FiPhone, FiStar } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+import { FiClock, FiPhone, FiStar } from "react-icons/fi";
 
 const RestaurantPage = () => {
   const [restaurantDetails, setRestaurantDetails] = useState({});
   const [menuItems, setMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const fetchRestaurantDetails = async () => {
     try {
@@ -26,11 +26,14 @@ const RestaurantPage = () => {
       console.log(error);
     }
   };
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchRestaurantDetails();
   }, [id]);
+
+  const handleReview = (id) => {
+    navigate(`/review/${id}`);
+  };
 
   if (loading) {
     return (
@@ -39,10 +42,6 @@ const RestaurantPage = () => {
       </div>
     );
   }
-  
-  const handleReview = (id) => {
-    navigate(`/review/${id}`);
-  };
 
   return (
     <div className="mt-20 container mx-auto px-4 sm:px-6 lg:px-8 pb-12">
@@ -81,13 +80,12 @@ const RestaurantPage = () => {
               <div className="flex items-center text-amber-500">
                 <FiStar className="fill-current mr-1" />
                 <FiStar className="fill-current mr-1" />
-  <Link
-    to={`/reviews/${id}`} // Replace with dynamic path if needed
-    className="font-medium hover:underline"
-  >
-    4.2 (reviews)
-  </Link>
-
+                <Link
+                  to={`/reviews/${id}`}
+                  className="font-medium hover:underline"
+                >
+                  4.2 (reviews)
+                </Link>
               </div>
             </div>
 
@@ -96,13 +94,6 @@ const RestaurantPage = () => {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="flex items-start gap-3">
-                <FiMapPin className="text-gray-500 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="text-gray-500 text-sm">Address</h3>
-                  <p className="text-gray-800">{restaurantDetails.address}</p>
-                </div>
-              </div>
               <div className="flex items-start gap-3">
                 <FiClock className="text-gray-500 mt-1 flex-shrink-0" />
                 <div>
@@ -128,18 +119,12 @@ const RestaurantPage = () => {
               Order Online
             </button>
           </Link>
-
-         {/* <Link to={`review/${id}`}>
-            <button className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
-              Write a Review
-            </button>
-          </Link>*/}
-          <button 
-          onClick={() => handleReview(id)}
-          className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md">
-              Write a Review
-            </button>
-            
+          <button
+            onClick={() => handleReview(id)}
+            className="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
+          >
+            Write a Review
+          </button>
         </div>
       </div>
 
@@ -147,17 +132,6 @@ const RestaurantPage = () => {
       <div className="mb-8">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800">Recommended Menu</h2>
-          <div className="flex gap-2">
-            {/* <button className="px-4 py-2 text-sm font-medium bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
-              All
-            </button>
-            <button className="px-4 py-2 text-sm font-medium bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
-              Starters
-            </button>
-            <button className="px-4 py-2 text-sm font-medium bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
-              Mains
-            </button> */}
-          </div>
         </div>
 
         {menuItems.length > 0 ? (
