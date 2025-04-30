@@ -93,6 +93,11 @@ const router = createBrowserRouter([
             path: "/reviews/:id",
             element: <ReviewPage />,
           },
+
+          {
+            path: "/home",
+            element: <Dashboard/>,
+          },
           
         ],
       },
