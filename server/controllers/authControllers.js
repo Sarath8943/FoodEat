@@ -70,7 +70,7 @@ exports.login = async (req, res) => {
       path: "/", // Available for all routes
     });
 
-    res.json({ message: " Login succssfully",userId:userExist._id,username:userExist.name });
+    res.json({ message: " Login succssfully",userId:userExist._id,username:userExist.role.name });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
