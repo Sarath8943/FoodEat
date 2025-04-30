@@ -95,10 +95,10 @@ const router = createBrowserRouter([
             element: <ReviewPage />,
           },
 
-          // {
-          //   path: "/managerdashboard",
-          //   element: <Manager/> ,
-          // },
+          {
+            path: "/managerdashboard",
+            element: <Manager/> ,
+          },
           
         ],
       },
