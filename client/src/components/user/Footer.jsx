@@ -126,7 +126,7 @@ const Footer = () => {
                 {[
                   { label: "Home", href: "/" },
                   { label: "About Us", href: "/about" },
-                  { label: "Restaurants", href: "/Dashboard " },
+                  { label: "Restaurants", href: "/managerdashboard " },
                   { label: "Contact", href: "/contact" },
                   { label: "Privacy Policy", href: "/privacy" },
                   { label: "Terms of Service", href: "/terms" },
