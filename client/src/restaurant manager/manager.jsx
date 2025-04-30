@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, DollarSign, Users } from 'lucide-react';
 
-const Dashboard = () => {
+const Manager = () => {
   const [activeSection, setActiveSection] = useState('Dashboard');
 
   const renderContent = () => {
@@ -92,4 +92,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Manager;
