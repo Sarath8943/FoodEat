@@ -96,7 +96,7 @@ const router = createBrowserRouter([
           },
 
           {
-            path: "/managerdashboard",
+            path: "/dashbord",
             element: <Manager/> ,
           },
           
