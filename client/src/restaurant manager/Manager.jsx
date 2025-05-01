@@ -70,7 +70,7 @@ const Manager = () => {
           />
 
           <Route
-            path="/menu"
+            path="/menuitems"
             element={
               <div className="bg-white rounded-2xl shadow-lg p-6 border">
                 <h2 className="text-2xl font-semibold mb-4">Menu Management</h2>
