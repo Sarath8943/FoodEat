@@ -1,5 +1,4 @@
 import React from 'react';
-import Manager from "../restaurant-manager/manager";
 import { useLocation, useNavigate, Routes, Route, Navigate } from 'react-router-dom';
 import { ArrowUpRight, DollarSign, Users } from 'lucide-react';
 
