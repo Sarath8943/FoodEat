@@ -20,7 +20,6 @@ import Invoice from "../pages/User/CheckoutPage/Invoice";
 import LandingPage from "../pages/shared/LandingPage";
 import ReviewPage from "../pages/User/ReviewPage";
 import CastamerReview from "../pages/User/CastamerReview";
-import Manager from "../restaurant manager/manager";
 
 const router = createBrowserRouter([
   {
