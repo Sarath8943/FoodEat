@@ -37,7 +37,7 @@ const SignUpPage = () => {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Email is invalid";
-    }
+    } 
 
     if (!formData.mobile) {
       newErrors.mobile = "Phone number is required";
