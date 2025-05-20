@@ -1,6 +1,8 @@
 import React from 'react';
 import { useLocation, useNavigate, Routes, Route, Navigate } from 'react-router-dom';
 import { ArrowUpRight, DollarSign, Users } from 'lucide-react';
+import MenuItems from './menu/Allmenu';
+import Coupons from './coupons/Coupon';
 
 const Manager = () => {
   const location = useLocation();
@@ -70,33 +72,18 @@ const Manager = () => {
           />
 
           <Route
-            path="/menuitems"
-            element={
-              <div className="bg-white rounded-2xl shadow-lg p-6 border">
-                <h2 className="text-2xl font-semibold mb-4">Menu Management</h2>
-                <p className="text-gray-600">Add, edit or remove dishes from the restaurant menu.</p>
-              </div>
-            }
+            path="/menu"
+            element={MenuItems}
           />
 
           <Route
             path="/review"
-            element={
-              <div className="bg-white rounded-2xl shadow-lg p-6 border">
-                <h2 className="text-2xl font-semibold mb-4">Customer Reviews</h2>
-                <p className="text-gray-600">View and respond to customer feedback.</p>
-              </div>
-            }
+            element={<></>}
           />
 
           <Route
             path="/coupon"
-            element={
-              <div className="bg-white rounded-2xl shadow-lg p-6 border">
-                <h2 className="text-2xl font-semibold mb-4">Coupon Management</h2>
-                <p className="text-gray-600">Create and manage discount coupons.</p>
-              </div>
-            }
+            element={Coupons}
           />
         </Routes>
       </main>
