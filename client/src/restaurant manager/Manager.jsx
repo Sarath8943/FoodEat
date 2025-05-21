@@ -5,7 +5,7 @@ import { ArrowUpRight, DollarSign, Users } from 'lucide-react';
 import MenuItems from './menu/Allmenu';
 import Coupons from './coupons/Coupon';
 
-const Manager = () => {
+const ManagerPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -92,4 +92,4 @@ const Manager = () => {
   );
 };
 
-export default Manager;
+export default ManagerPage;
