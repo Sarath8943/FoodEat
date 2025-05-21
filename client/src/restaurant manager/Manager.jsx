@@ -1,4 +1,5 @@
 import React from 'react';
+import { Manager } from 'react-popper';
 import { useLocation, useNavigate, Routes, Route, Navigate } from 'react-router-dom';
 import { ArrowUpRight, DollarSign, Users } from 'lucide-react';
 import MenuItems from './menu/Allmenu';
