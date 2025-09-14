@@ -1,10 +1,143 @@
+// import React, { useState } from "react";
+// import { CiSearch } from "react-icons/ci";
+// import Data from "../../../src/data/data";
+// import SimpleSlider from "../../components/slider/slider";
+// import RestaurantCard from "../../components/user/RestaurantCard";
+// import { useNavigate } from "react-router-dom";
+// import useFetch from "../../Hooks/UseFetch";
+
+// const Home = () => {
+//   const [searchQuery, setSearchQuery] = useState("");
+//   const [selectedCuisine, setSelectedCuisine] = useState("all");
+
+//   const [restaurants, isLoading, error] = useFetch("/restaurant/", {
+//     cuisine: selectedCuisine !== "all" ? selectedCuisine : undefined,
+//   });
+
+//   const navigate = useNavigate();
+
+//   const handleSearchChange = (event) => {
+//     setSearchQuery(event.target.value);
+//   };
+
+//   const handleRestaurantClick = (id) => {
+//     navigate(`/restaurantPage/${id}`);
+//   };
+
+//   const filteredRestaurants = restaurants?.filter((restaurant) =>
+//     restaurant.name.toLowerCase().includes(searchQuery.toLowerCase())
+//   );
+
+//   return (
+//     <div className="bg-gray-50 min-h-screen">
+//       {/* Hero Search Section */}
+//       <div className="bg-gray-800 py-16 px-4 sm:px-6 lg:px-8">
+//         <div className="max-w-3xl mx-auto text-center">
+//           <h1 className="text-3xl font-bold text-white sm:text-4xl mb-6">
+//             Discover the best food near you
+//           </h1>
+//           <div className="relative">
+//             <input
+//               type="text"
+//               className="w-full py-4 px-6 rounded-full border-0 focus:ring-2 focus:ring-amber-400 shadow-lg"
+//               placeholder="Search for restaurants, cuisine, or dishes..."
+//               value={searchQuery}
+//               onChange={handleSearchChange}
+//             />
+//             <CiSearch className="absolute right-6 top-1/2 transform -translate-y-1/2 text-2xl text-gray-500" />
+
+//             {searchQuery && (
+//               <div className="absolute bg-white w-full mt-2 p-4 rounded-lg shadow-xl z-50 max-h-80 overflow-y-auto">
+//                 <h2 className="font-bold text-lg mb-3 text-gray-800">
+//                   Search Results
+//                 </h2>
+//                 {filteredRestaurants?.length ? (
+//                   <div className="space-y-2">
+//                     {filteredRestaurants.map((item) => (
+//                       <div
+//                         key={item._id}
+//                         onClick={() => handleRestaurantClick(item._id)}
+//                         className="p-2 hover:bg-gray-100 rounded-md cursor-pointer transition-colors"
+//                       >
+//                         <p className="text-gray-700 font-medium">{item.name}</p>
+//                         <p className="text-sm text-gray-500">{item.cuisine}</p>
+//                       </div>
+//                     ))}
+//                   </div>
+//                 ) : (
+//                   <p className="text-gray-500">No restaurants found</p>
+//                 )}
+//               </div>
+//             )}
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Featured Dishes Slider */}
+//       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+//         <div className="mb-8">
+//           <h2 className="text-2xl font-bold text-gray-800 sm:text-3xl mb-2">
+//             Order our best food options
+//           </h2>
+//           <p className="text-gray-600">
+//             Discover our most popular dishes and special offers
+//           </p>
+//         </div>
+//         <SimpleSlider data={Data} />
+//       </div>
+
+//       {/* Restaurants Section */}
+//       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-white rounded-t-3xl -mt-8 shadow-sm">
+//         <div className="flex justify-between items-center mb-8">
+//           <div>
+//             <h2 className="text-2xl font-bold text-gray-800 sm:text-3xl mb-1">
+//               Featured Restaurants
+//             </h2>
+//             <p className="text-gray-600">
+//               {restaurants?.length || 0} restaurants available
+//             </p>
+//           </div>
+//           <select
+//             className="bg-gray-100 border-0 rounded-full px-4 py-2 text-gray-700 focus:ring-2 focus:ring-amber-400"
+//             value={selectedCuisine}
+//             onChange={(e) => setSelectedCuisine(e.target.value)}
+//           >
+//             <option value="indian">Indian</option>
+//           </select>
+//         </div>
+
+//         {isLoading ? (
+//           <div className="flex justify-center py-12">
+//             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-400"></div>
+//           </div>
+//         ) : error ? (
+//           <div className="text-center py-12 text-red-500">
+//             Error loading restaurants: {error.message}
+//           </div>
+//         ) : (
+//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+//             {restaurants?.map((item) => (
+//               <RestaurantCard
+//                 data={item}
+//                 key={item._id}
+//                 onClick={() => handleRestaurantClick(item._id)}
+//               />
+//             ))}
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Home;
 import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import Data from "../../../src/data/data";
 import SimpleSlider from "../../components/slider/slider";
 import RestaurantCard from "../../components/user/RestaurantCard";
 import { useNavigate } from "react-router-dom";
-import useFetch from "../../hooks/UseFetch";
+import useFetch from "../../Hooks/UseFetch"; // ✅ lowercase ഉപയോഗിക്കുക
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -31,24 +164,24 @@ const Home = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Hero Search Section */}
-      <div className="bg-gray-800 py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-3xl font-bold text-white sm:text-4xl mb-6">
+      <div className="bg-gray-800 py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6 px-2">
             Discover the best food near you
           </h1>
-          <div className="relative">
+          <div className="relative w-full">
             <input
               type="text"
-              className="w-full py-4 px-6 rounded-full border-0 focus:ring-2 focus:ring-amber-400 shadow-lg"
+              className="w-full py-3 sm:py-4 px-4 sm:px-6 rounded-full border-0 focus:ring-2 focus:ring-amber-400 shadow-lg text-sm sm:text-base"
               placeholder="Search for restaurants, cuisine, or dishes..."
               value={searchQuery}
               onChange={handleSearchChange}
             />
-            <CiSearch className="absolute right-6 top-1/2 transform -translate-y-1/2 text-2xl text-gray-500" />
+            <CiSearch className="absolute right-4 sm:right-6 top-1/2 transform -translate-y-1/2 text-xl sm:text-2xl text-gray-500" />
 
             {searchQuery && (
-              <div className="absolute bg-white w-full mt-2 p-4 rounded-lg shadow-xl z-50 max-h-80 overflow-y-auto">
-                <h2 className="font-bold text-lg mb-3 text-gray-800">
+              <div className="absolute bg-white w-full mt-2 p-4 rounded-lg shadow-xl z-50 max-h-80 overflow-y-auto text-left">
+                <h2 className="font-bold text-base sm:text-lg mb-3 text-gray-800">
                   Search Results
                 </h2>
                 {filteredRestaurants?.length ? (
@@ -59,13 +192,17 @@ const Home = () => {
                         onClick={() => handleRestaurantClick(item._id)}
                         className="p-2 hover:bg-gray-100 rounded-md cursor-pointer transition-colors"
                       >
-                        <p className="text-gray-700 font-medium">{item.name}</p>
-                        <p className="text-sm text-gray-500">{item.cuisine}</p>
+                        <p className="text-gray-700 font-medium text-sm sm:text-base">
+                          {item.name}
+                        </p>
+                        <p className="text-xs sm:text-sm text-gray-500">
+                          {item.cuisine}
+                        </p>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-gray-500">No restaurants found</p>
+                  <p className="text-gray-500 text-sm">No restaurants found</p>
                 )}
               </div>
             )}
@@ -74,12 +211,12 @@ const Home = () => {
       </div>
 
       {/* Featured Dishes Slider */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 sm:text-3xl mb-2">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="mb-6 sm:mb-8 text-center sm:text-left">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-2">
             Order our best food options
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-sm sm:text-base">
             Discover our most popular dishes and special offers
           </p>
         </div>
@@ -87,18 +224,18 @@ const Home = () => {
       </div>
 
       {/* Restaurants Section */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-white rounded-t-3xl -mt-8 shadow-sm">
-        <div className="flex justify-between items-center mb-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 bg-white rounded-t-2xl sm:rounded-t-3xl -mt-6 sm:-mt-8 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-8 gap-4 sm:gap-0 text-center sm:text-left">
           <div>
-            <h2 className="text-2xl font-bold text-gray-800 sm:text-3xl mb-1">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-1">
               Featured Restaurants
             </h2>
-            <p className="text-gray-600">
+            <p className="text-gray-600 text-sm sm:text-base">
               {restaurants?.length || 0} restaurants available
             </p>
           </div>
           <select
-            className="bg-gray-100 border-0 rounded-full px-4 py-2 text-gray-700 focus:ring-2 focus:ring-amber-400"
+            className="bg-gray-100 border-0 rounded-full px-3 sm:px-4 py-2 text-sm sm:text-base text-gray-700 focus:ring-2 focus:ring-amber-400"
             value={selectedCuisine}
             onChange={(e) => setSelectedCuisine(e.target.value)}
           >
@@ -108,14 +245,14 @@ const Home = () => {
 
         {isLoading ? (
           <div className="flex justify-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-400"></div>
+            <div className="animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-t-2 border-b-2 border-amber-400"></div>
           </div>
         ) : error ? (
-          <div className="text-center py-12 text-red-500">
+          <div className="text-center py-12 text-red-500 text-sm sm:text-base">
             Error loading restaurants: {error.message}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {restaurants?.map((item) => (
               <RestaurantCard
                 data={item}
