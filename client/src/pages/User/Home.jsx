@@ -137,7 +137,7 @@ import Data from "../../../src/data/data";
 import SimpleSlider from "../../components/slider/slider";
 import RestaurantCard from "../../components/user/RestaurantCard";
 import { useNavigate } from "react-router-dom";
-import useFetch from "../../Hooks/UseFetch"; // ✅ lowercase ഉപയോഗിക്കുക
+import useFetch from "../../Hooks/UseFetch"; 
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
